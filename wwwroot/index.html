@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福安市实验中学2024级8班</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="starfall-canvas"></canvas>
+    <header>
+        <div class="header-top">
+            <h1 class="art-title">福安市实验中学2024级8班</h1>
+            <div class="user-area" id="userArea">
+                <span class="user-greeting" id="userGreeting" style="display:none;"></span>
+                <button class="auth-btn" id="loginBtn">登录</button>
+                <button class="auth-btn" id="registerBtn">注册</button>
+                <button class="auth-btn logout-btn" id="logoutBtn" style="display:none;">退出</button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="nav-list">
+            <li><a href="index.html" class="active">首页</a></li>
+            <li><a href="事项.html">事项</a></li>
+            <li><a href="班委.html">班委</a></li>
+            <li><a href="团支.html">团支</a></li>
+            <li><a href="老师.html">老师</a></li>
+            <li><a href="留言.html">留言</a></li>
+            <li><a href="我的.html">我的</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>欢迎来到我们的班级网站</h2>
+            <p>团结 · 勤奋 · 求实 · 创新</p>
+            <div class="photo-frame">
+                <img src="class-photo.jpg" alt="福安市实验中学2024级8班班级合照" id="classPhoto">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 福安市实验中学2024级8班</p>
+    </footer>
+
+    <!-- ===== 登录弹窗 ===== -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <span class="modal-close" id="loginClose">&times;</span>
+            <h2>登录</h2>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginUsername">用户名</label>
+                    <input type="text" id="loginUsername" placeholder="请输入用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密码</label>
+                    <input type="password" id="loginPassword" placeholder="请输入密码" required>
+                </div>
+                <button type="submit" class="submit-btn">登录</button>
+                <p class="auth-switch">还没有账号？<a href="#" id="switchToRegister">去注册</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== 注册弹窗 ===== -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-content">
+            <span class="modal-close" id="registerClose">&times;</span>
+            <h2>注册</h2>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regStudentId">学号</label>
+                    <input type="text" id="regStudentId" placeholder="请输入学号" required>
+                </div>
+                <div class="form-group">
+                    <label for="regCode">识别码</label>
+                    <input type="text" id="regCode" placeholder="请输入识别码" required>
+                </div>
+                <div class="form-group">
+                    <label for="regUsername">用户名</label>
+                    <input type="text" id="regUsername" placeholder="请设置您的用户名" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">密码</label>
+                    <input type="password" id="regPassword" placeholder="请输入密码（8位以上，包含大小写字母和数字）" required>
+                    <div class="password-hint" id="passwordHint" style="font-size:0.8rem;color:#999;margin-top:4px;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirm">确认密码</label>
+                    <input type="password" id="regConfirm" placeholder="请再次输入密码" required>
+                </div>
+                <button type="submit" class="submit-btn">注册</button>
+                <p class="auth-switch">已有账号？<a href="#" id="switchToLogin">去登录</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== 通知弹窗 ===== -->
+    <div class="modal-overlay" id="notificationModal">
+        <div class="modal-content notification-content">
+            <span class="modal-close" id="notificationClose">&times;</span>
+            <h2>📢 系统通知</h2>
+            <div class="notification-list" id="notificationList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

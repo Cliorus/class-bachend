@@ -1,0 +1,6 @@
+@ClassBackend_HostAddress = http://localhost:5211
+
+GET {{ClassBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

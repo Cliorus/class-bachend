@@ -1,0 +1,1260 @@
+/* ===== 全局重置 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #2d0a0a, #5c1a1a, #3d0c0c);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== 流星雨 Canvas 背景 ===== */
+#starfall-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ===== 头部艺术字标题 ===== */
+header {
+    width: 100%;
+    padding: 30px 30px 25px;
+    background: linear-gradient(135deg, #8b0000, #cc0000);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.art-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    background: linear-gradient(90deg, #ffd700, #ff3333, #ffd700);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 3s linear infinite;
+    text-shadow: none;
+    filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.4));
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+/* ===== 用户区域 ===== */
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.user-greeting {
+    color: #ffd700;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.auth-btn {
+    padding: 8px 18px;
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffd700;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.auth-btn:hover {
+    background: #ffd700;
+    color: #8b0000;
+}
+
+.logout-btn {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-color: #fff;
+}
+
+@keyframes shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ===== 导航栏 ===== */
+nav {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.nav-list li {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-list li a {
+    display: block;
+    padding: 16px 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-list li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #cc0000, #ff4444);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-list li a:hover {
+    color: #cc0000;
+    background: rgba(204, 0, 0, 0.05);
+}
+
+.nav-list li a:hover::after {
+    width: 80%;
+}
+
+.nav-list li a.active {
+    color: #cc0000;
+}
+
+.nav-list li a.active::after {
+    width: 80%;
+}
+
+/* ===== 主体内容 ===== */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    padding: 60px 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(255, 245, 245, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.hero h2 {
+    font-size: 2.4rem;
+    color: #8b0000;
+    margin-bottom: 20px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: #993333;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+}
+
+.hero .photo-frame {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 6px;
+    background: linear-gradient(135deg, #cc0000, #ff4444);
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(139, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero .photo-frame:hover {
+    transform: scale(1.01);
+    box-shadow: 0 12px 40px rgba(139, 0, 0, 0.6);
+}
+
+.hero .photo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* ===== 留言板 ===== */
+.message-board {
+    text-align: center;
+    padding: 40px 30px;
+    background: rgba(255, 245, 245, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.message-board h2 {
+    font-size: 2.2rem;
+    color: #8b0000;
+    margin-bottom: 10px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.board-desc {
+    font-size: 1.1rem;
+    color: #993333;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* 留言列表 */
+.message-list {
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.message-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(139, 0, 0, 0.08);
+    border-left: 4px solid #cc0000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 18px rgba(139, 0, 0, 0.15);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.message-name {
+    font-weight: 700;
+    color: #8b0000;
+    font-size: 1rem;
+}
+
+.message-name.anonymous {
+    color: #999;
+    font-style: italic;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.message-content {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.empty-message {
+    text-align: center;
+    color: #aaa;
+    font-size: 1rem;
+    padding: 40px 0;
+}
+
+/* 留言表单 */
+.message-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.message-form-wrapper h3 {
+    font-size: 1.3rem;
+    color: #8b0000;
+    margin-bottom: 18px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+    text-align: center;
+}
+
+.message-form .form-group {
+    margin-bottom: 16px;
+}
+
+.message-form label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #8b0000;
+    margin-bottom: 6px;
+}
+
+.message-form input,
+.message-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e0c0c0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+    border-color: #cc0000;
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+}
+
+.message-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.anonymous-group {
+    margin-bottom: 12px !important;
+}
+
+.anonymous-label {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.anonymous-label input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer;
+    accent-color: #cc0000;
+}
+
+.anonymous-text {
+    font-size: 0.95rem;
+    color: #993333;
+    font-weight: 500;
+}
+
+/* 教师注册复选框 */
+.role-label {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.role-label input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    cursor: pointer;
+    accent-color: #cc0000;
+}
+
+.role-label span {
+    font-size: 0.95rem;
+    color: #993333;
+    font-weight: 500;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #cc0000, #ff4444);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 2px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(204, 0, 0, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== 弹窗（登录/注册） ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 35px 30px;
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #cc0000;
+}
+
+.modal-content h2 {
+    font-size: 1.8rem;
+    color: #8b0000;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.auth-form .form-group {
+    margin-bottom: 18px;
+}
+
+.auth-form label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e0c0c0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #333;
+    background: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.auth-form input:focus {
+    border-color: #cc0000;
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+    background: #fff;
+}
+
+.auth-form .submit-btn {
+    margin-top: 8px;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.auth-switch a {
+    color: #cc0000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* ===== 未登录提示页 ===== */
+.auth-required {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(255, 245, 245, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.auth-required .lock-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.auth-required h2 {
+    font-size: 1.8rem;
+    color: #8b0000;
+    margin-bottom: 12px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.auth-required p {
+    font-size: 1.1rem;
+    color: #993333;
+    margin-bottom: 25px;
+}
+
+.auth-required .auth-btn {
+    display: inline-block;
+    padding: 12px 36px;
+    border: 2px solid #cc0000;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #cc0000, #ff4444);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+
+.auth-required .auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(204, 0, 0, 0.4);
+}
+
+/* ===== 教师发布面板 ===== */
+.teacher-panel {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background: rgba(255, 245, 245, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(139, 0, 0, 0.15);
+}
+
+.teacher-panel h3 {
+    font-size: 1.4rem;
+    color: #8b0000;
+    margin-bottom: 20px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.announcement-form .form-group {
+    margin-bottom: 16px;
+}
+
+.announcement-form label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #8b0000;
+    margin-bottom: 6px;
+}
+
+.announcement-form input,
+.announcement-form textarea,
+.announcement-form select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e0c0c0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.announcement-form input:focus,
+.announcement-form textarea:focus,
+.announcement-form select:focus {
+    border-color: #cc0000;
+}
+
+.form-select {
+    cursor: pointer;
+    background: #fff;
+}
+
+/* ===== 公告列表 ===== */
+.announcements-list {
+    max-width: 800px;
+    margin: 30px auto 0;
+}
+
+.announcement-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 15px rgba(139, 0, 0, 0.1);
+    border-left: 4px solid #cc0000;
+    text-align: left;
+}
+
+.announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.announcement-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #8b0000;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.announcement-type {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.announcement-type.notice {
+    background: #ffd700;
+    color: #8b0000;
+}
+
+.announcement-type.homework {
+    background: #ffa500;
+    color: #fff;
+}
+
+.announcement-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.announcement-content {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.announcement-deadline {
+    font-size: 0.9rem;
+    color: #cc0000;
+    font-weight: 600;
+}
+
+.announcement-actions {
+    margin-top: 12px;
+}
+
+.delete-announcement-btn {
+    padding: 6px 14px;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-announcement-btn:hover {
+    background: #c82333;
+}
+
+/* ===== 留言点赞和评论 ===== */
+.message-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.like-btn,
+.comment-toggle-btn {
+    padding: 6px 14px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-btn:hover,
+.comment-toggle-btn:hover {
+    background: #ffe0e0;
+    border-color: #cc0000;
+}
+
+.like-btn.liked {
+    background: #ff4444;
+    color: #fff;
+    border-color: #cc0000;
+}
+
+.like-count,
+.comment-count {
+    font-weight: 600;
+}
+
+/* ===== 评论区 ===== */
+.comments-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #f0f0f0;
+    display: none;
+}
+
+.comments-section.active {
+    display: block;
+}
+
+.comments-list {
+    margin-bottom: 15px;
+}
+
+.comment-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #8b0000;
+}
+
+.comment-time {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.comment-content {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-form input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #e0c0c0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.comment-form input:focus {
+    border-color: #cc0000;
+}
+
+.comment-form button {
+    padding: 8px 16px;
+    background: #cc0000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.comment-form button:hover {
+    background: #a00000;
+}
+
+/* ===== 图片上传预览 ===== */
+.file-input {
+    width: 100%;
+    padding: 8px;
+    border: 2px dashed #e0c0c0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.file-input:hover {
+    border-color: #cc0000;
+}
+
+.image-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #e0c0c0;
+}
+
+.message-image {
+    max-width: 100%;
+    max-height: 300px;
+    margin-top: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ===== 管理员面板 ===== */
+.admin-panel {
+    max-width: 800px;
+    margin: 40px auto 0;
+    padding: 30px;
+    background: rgba(255, 245, 245, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.2);
+    text-align: left;
+}
+
+.admin-panel h3 {
+    font-size: 1.6rem;
+    color: #8b0000;
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.admin-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(139, 0, 0, 0.08);
+}
+
+.admin-section h4 {
+    font-size: 1.2rem;
+    color: #8b0000;
+    margin-bottom: 15px;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.admin-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.admin-input {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px 14px;
+    border: 2px solid #e0c0c0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.admin-input:focus {
+    border-color: #cc0000;
+}
+
+.admin-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    color: #fff;
+}
+
+.mute-btn {
+    background: #cc0000;
+}
+
+.mute-btn:hover {
+    background: #a00000;
+    transform: translateY(-2px);
+}
+
+.unmute-btn {
+    background: #28a745;
+}
+
+.unmute-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.leader-btn {
+    background: #ffa500;
+}
+
+.leader-btn:hover {
+    background: #e69500;
+    transform: translateY(-2px);
+}
+
+.remove-leader-btn {
+    background: #6c757d;
+}
+
+.remove-leader-btn:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.user-list-wrapper {
+    margin-top: 15px;
+}
+
+.user-list-wrapper h5 {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.user-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0c0c0;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.user-list li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    background: #f8f8f8;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.user-list li:last-child {
+    margin-bottom: 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.user-role.teacher {
+    background: #ffd700;
+    color: #8b0000;
+}
+
+.user-role.classleader {
+    background: #ffa500;
+    color: #fff;
+}
+
+.user-role.student {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.user-status {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.message-admin-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.message-admin-item {
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    border-left: 3px solid #cc0000;
+}
+
+.message-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.message-admin-author {
+    font-weight: 600;
+    color: #8b0000;
+    font-size: 0.9rem;
+}
+
+.message-admin-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.message-admin-content {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.delete-message-btn {
+    padding: 6px 14px;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-message-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+/* ===== 通知弹窗 ===== */
+.notification-content {
+    max-width: 500px;
+}
+
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border-left: 4px solid #cc0000;
+    position: relative;
+}
+
+.notification-item.unread {
+    background: #fff8e1;
+    border-left-color: #ffa500;
+}
+
+.notification-item .notification-message {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.notification-item .notification-time {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.notification-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.notification-btn.read-btn {
+    background: #28a745;
+    color: #fff;
+}
+
+.notification-btn.read-btn:hover {
+    background: #218838;
+}
+
+.notification-btn.delete-btn {
+    background: #dc3545;
+    color: #fff;
+}
+
+.notification-btn.delete-btn:hover {
+    background: #c82333;
+}
+
+.no-notifications {
+    text-align: center;
+    color: #999;
+    padding: 40px 0;
+    font-size: 1rem;
+}
+
+/* ===== 页脚 ===== */
+footer {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background: #8b0000;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* ===== 个人信息卡片 ===== */
+.profile-card {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(255, 245, 245, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.2);
+    text-align: center;
+}
+
+.profile-header {
+    margin-bottom: 25px;
+}
+
+.profile-avatar {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #8b0000;
+    font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(139, 0, 0, 0.08);
+}
+
+.profile-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.profile-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #8b0000;
+}
+
+.profile-value.teacher {
+    color: #cc0000;
+}
+
+.profile-value.classleader {
+    color: #ff8800;
+}
+
+.profile-value.student {
+    color: #333;
+}
