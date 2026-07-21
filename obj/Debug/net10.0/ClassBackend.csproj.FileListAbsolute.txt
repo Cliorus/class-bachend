@@ -304,3 +304,4 @@
 /Users/cliorus/Desktop/ClassBackend/obj/Debug/net10.0/ClassBackend.pdb
 /Users/cliorus/Desktop/ClassBackend/obj/Debug/net10.0/ClassBackend.genruntimeconfig.cache
 /Users/cliorus/Desktop/ClassBackend/obj/Debug/net10.0/ref/ClassBackend.dll
+/Users/cliorus/Desktop/ClassBackend/obj/Debug/net10.0/ClassBackend.sourcelink.json
