@@ -23,6 +23,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddOpenApi();
 
+var port =
+Environment.GetEnvironmentVariable("PORT")??"5211";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 var app = builder.Build();
 
 // 自动创建数据库表和初始化数据
